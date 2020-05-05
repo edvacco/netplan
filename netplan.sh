@@ -1,8 +1,8 @@
 #!/bin/bash
 # $RANDOM returns a different random integer at each invocation. Nominal range: 0 - 32767 (signed 16-bit integer).
-echo -e  "$1   -   $2"
+echo -e  "$1   -   $2   -   $3"
 #USAR:
-#./netplan.sh IP MAC
+#./netplan.sh IP GATEWAY MAC
 #================================================
 #TABELINHA DE CORES
 #================================================
@@ -24,14 +24,16 @@ FIM='\033[0m'
 echo -e  "${DOURADO}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////${FIM}"
 echo -e  "                                            ${SUMBLINHADO}PARAMETRO 1: $1                  ${FIM}"
 echo -e  "                                            ${SUMBLINHADO}PARAMETRO 2: $2                  ${FIM}"
+echo -e  "                                            ${SUMBLINHADO}PARAMETRO 3: $2                  ${FIM}"
 echo -e  "${DOURADO}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////${FIM}"
 
 
-#EXEMPLO CONSIDERANDO QUE O IP É 10.1.1.1 E O MAC É 00:00:00:00:00:00 DO TEMPLATE
+#EXEMPLO CONSIDERANDO QUE O IP É 142.54.179.187 GATEWAY É 142.54.179.185 E O MAC É 1E:64:28:2D:60:14 DO TEMPLATE
 
 
-sed -i 's/10.1.1.1/$1/g' /etc/netplan/50-cloud-init.yaml;
-sed -i 's/00:00:00:00:00:00/$2/g' /etc/netplan/50-cloud-init.yaml;
+sed -i 's/142.54.179.187/$1/g' /etc/netplan/50-cloud-init.yaml;
+sed -i 's/142.54.179.185/$2/g' /etc/netplan/50-cloud-init.yaml;
+sed -i 's/1E:64:28:2D:60:14/$3/g' /etc/netplan/50-cloud-init.yaml;
 
 
 cd /etc/netplan/
